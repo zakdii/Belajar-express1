@@ -1,16 +1,16 @@
-import express from "express";
-import { httpStatusMesage } from "../constants/httpStatusMessage.js";
-import {
+const express = require("express");
+const { httpStatusMesage } = require("../constants/httpStatusMessage.js");
+const {
   addAppointment,
   findAppointmentbyId,
-} from "../services/appointments.js";
+} = require("../services/appointments.js");
 
 /**
  *
  * @param {express.Request} request
  * @param {express.Response} response
  */
-export const getAppointmentById = async (request, response) => {
+const getAppointmentById = async (request, response) => {
   const { id } = request.params;
   const appointments = await findAppointmentbyId(id);
 
@@ -25,7 +25,7 @@ export const getAppointmentById = async (request, response) => {
  * @param {express.Request} request
  * @param {express.Response} response
  */
-export const createAppointment = async (request, response) => {
+const createAppointment = async (request, response) => {
   const { nama, email, noHP, namaDoctor, appointmentDate, pesan } =
     request.body;
   const appointments = await addAppointment(
@@ -42,4 +42,9 @@ export const createAppointment = async (request, response) => {
     data: appointments,
     message: httpStatusMesage[response.statusCode],
   });
+};
+
+module.exports = {
+  getAppointmentById,
+  createAppointment,
 };

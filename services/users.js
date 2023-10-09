@@ -1,8 +1,8 @@
-import User from "../models/users.js";
-import bcrypt from "bcrypt";
-import Validator from "fastest-validator";
+const User = require("../models/users.js");
+const bcrypt = require("bcrypt");
+const Validator = require("fastest-validator");
 
-export const findUserById = async (id) => {
+const findUserById = async (id) => {
   return await User.findOne({ where: { id } });
 };
 
@@ -16,7 +16,7 @@ const signUpSchema = {
 const validator = new Validator();
 const signUpValidator = validator.compile(signUpSchema);
 
-export const signUp = async (username, email, password) => {
+const signUp = async (username, email, password) => {
   const validationResult = signUpValidator({ username, email, password });
 
   if (validationResult !== true) {
@@ -44,7 +44,7 @@ export const signUp = async (username, email, password) => {
   }
 };
 
-export const signIn = async (email, password) => {
+const signIn = async (email, password) => {
   try {
     const user = await User.findOne({ where: { email } });
 
@@ -64,6 +64,13 @@ export const signIn = async (email, password) => {
   }
 };
 
-export const destroyUserById = async (id) => {
+const destroyUserById = async (id) => {
   return await User.destroy({ where: { id } });
+};
+
+module.exports = {
+  findUserById,
+  signUp,
+  signIn,
+  destroyUserById,
 };

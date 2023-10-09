@@ -1,8 +1,8 @@
-import { Router } from "express";
-import {
-  createAppointment,
+const { Router } = require("express");
+const {
   getAppointmentById,
-} from "../controllers/appointments.js";
+  createAppointment,
+} = require("../controllers/appointments.js");
 
 const appointmentsRouter = Router();
 
@@ -10,4 +10,4 @@ appointmentsRouter.get("/:id", getAppointmentById);
 
 appointmentsRouter.post("/", createAppointment);
 
-export default appointmentsRouter;
+module.exports = appointmentsRouter;

@@ -1,13 +1,17 @@
-import express, { request, response } from "express";
-import { httpStatusMesage } from "../constants/httpStatusMessage.js";
-import { findDoctorById, findDoctor, addDoctor } from "../services/doctors.js";
+const express = require("express");
+const { httpStatusMesage } = require("../constants/httpStatusMessage.js");
+const {
+  findDoctorById,
+  findDoctor,
+  addDoctor,
+} = require("../services/doctors.js");
 
 /**
  *
  * @param {express.Request} request
  * @param {express.Response} response
  */
-export const getDoctorbyId = async (request, response) => {
+const getDoctorbyId = async (request, response) => {
   const { id } = request.params;
   const doctors = await findDoctorById(id);
 
@@ -22,7 +26,7 @@ export const getDoctorbyId = async (request, response) => {
  * @param {express.Request} request
  * @param {express.Response} response
  */
-export const getDoctor = async (request, response) => {
+const getDoctor = async (request, response) => {
   const doctors = await findDoctor();
 
   response.json({
@@ -36,7 +40,7 @@ export const getDoctor = async (request, response) => {
  * @param {express.Request} request
  * @param {express.Response} response
  */
-export const postDoctor = async (request, response) => {
+const postDoctor = async (request, response) => {
   const { idDoctor, namaDoctor, spesialisasi, picture, bio } = request.body;
   const doctors = await addDoctor(
     idDoctor,
@@ -51,4 +55,10 @@ export const postDoctor = async (request, response) => {
     data: doctors,
     message: httpStatusMesage[response.statusCode],
   });
+};
+
+module.exports = {
+  getDoctorbyId,
+  getDoctor,
+  postDoctor,
 };

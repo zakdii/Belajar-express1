@@ -1,18 +1,18 @@
-import express, { request, response } from "express";
-import {
+const express = require("express");
+const {
   signUp,
   findUserById,
   signIn,
   destroyUserById,
-} from "../services/users.js";
-import { httpStatusMesage } from "../constants/httpStatusMessage.js";
+} = require("../services/users.js");
+const { httpStatusMesage } = require("../constants/httpStatusMessage.js");
 
 /**
  *
  * @param {express.Request} request
  * @param {express.Response} response
  */
-export const getUserById = async (request, response) => {
+const getUserById = async (request, response) => {
   const { id } = request.params;
   const user = await findUserById(id);
 
@@ -27,7 +27,7 @@ export const getUserById = async (request, response) => {
  * @param {express.Request} request
  * @param {express.Response} response
  */
-export const createAccount = async (request, response) => {
+const createAccount = async (request, response) => {
   const { username, email, password } = request.body;
   const user = await signUp(username, email, password);
 
@@ -43,7 +43,7 @@ export const createAccount = async (request, response) => {
  * @param {express.Request} request
  * @param {express.Response} response
  */
-export const signInAccount = async (request, response) => {
+const signInAccount = async (request, response) => {
   const { email, password } = request.body;
   const user = await signIn(email, password);
 
@@ -59,7 +59,7 @@ export const signInAccount = async (request, response) => {
  * @param {express.Request} request
  * @param {express.Response} response
  */
-export const deleteUserById = async (request, response) => {
+const deleteUserById = async (request, response) => {
   const { id } = request.params;
   const user = await destroyUserById(id);
 
@@ -67,4 +67,11 @@ export const deleteUserById = async (request, response) => {
     data: user,
     message: httpStatusMesage[response.statusCode],
   });
+};
+
+module.exports = {
+  getUserById,
+  createAccount,
+  signInAccount,
+  deleteUserById,
 };

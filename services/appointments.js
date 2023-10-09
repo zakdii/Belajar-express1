@@ -1,11 +1,11 @@
-import Appointment from "../models/appointments.js";
-import Validator from "fastest-validator";
+const Appointment = require("../models/appointments.js");
+const Validator = require("fastest-validator");
 
-export const findAppointmentbyId = async (id) => {
+const findAppointmentbyId = async (id) => {
   return await Appointment.findOne({ where: { id } });
 };
 
-export const findAppointment = async () => {
+const findAppointment = async () => {
   return await Appointment.findAll();
 };
 
@@ -21,7 +21,7 @@ const schema = {
 const validator = new Validator();
 const newValidator = validator.compile(schema);
 
-export const addAppointment = async (
+const addAppointment = async (
   nama,
   email,
   noHP,
@@ -52,6 +52,12 @@ export const addAppointment = async (
       });
     }
   } catch (error) {
-    return { error: error.massage };
+    return { error: error.message };
   }
+};
+
+module.exports = {
+  findAppointmentbyId,
+  findAppointment,
+  addAppointment,
 };

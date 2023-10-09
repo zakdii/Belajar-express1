@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/sequelize.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/sequelize.js");
 
 const Appointment = sequelize.define("Appointment", {
   nama: DataTypes.STRING,
@@ -11,4 +11,5 @@ const Appointment = sequelize.define("Appointment", {
   // Tambahkan bidang lain yang relevan untuk janji temu
 });
 
-export default Appointment;
+module.exports = require("./appointments.js").default;
+module.exports = Appointment;

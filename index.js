@@ -1,15 +1,17 @@
-import express from "express";
-import { Router } from "express";
-import dotenv from "dotenv";
-import bodyParser from "body-parser";
-import sequelize from "./config/sequelize.js";
-import { startSequelize } from "./utils/startSequelize.js";
-import cors from "cors";
+const express = require("express");
+const { Router } = require("express");
+const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
+const sequelize = require("./config/sequelize.js");
+const startSequelize = require("./utils/startSequelize.js");
+const cors = require("cors");
 
-import "./models/index.js";
-import usersRouter from "./routes/users.js";
-import doctorsRouter from "./routes/doctors.js";
-import appointmentsRouter from "./routes/appointments.js";
+require("./models/users.js");
+require("./models/doctors.js");
+require("./models/appointments.js");
+const usersRouter = require("./routes/users.js");
+const doctorsRouter = require("./routes/doctors.js");
+const appointmentsRouter = require("./routes/appointments.js");
 
 dotenv.config();
 

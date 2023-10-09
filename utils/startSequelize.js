@@ -1,9 +1,9 @@
-import { Sequelize } from "sequelize";
+const { Sequelize } = require("sequelize");
 /**
  *
  * @param {Sequelize} sequelize
  */
-export const startSequelize = async (sequelize) => {
+const startSequelize = async (sequelize) => {
   try {
     await sequelize.authenticate();
     await sequelize.sync({ alter: true });
@@ -17,3 +17,5 @@ export const startSequelize = async (sequelize) => {
     console.error("Connection to database failure!", e);
   }
 };
+
+module.exports = startSequelize;

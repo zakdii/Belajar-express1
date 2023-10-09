@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/sequelize.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/sequelize.js");
 
 const Doctor = sequelize.define("Doctors", {
   idDoctor: DataTypes.STRING,
@@ -9,4 +9,5 @@ const Doctor = sequelize.define("Doctors", {
   bio: DataTypes.STRING,
 });
 
-export default Doctor;
+module.exports = require("./doctors.js").default;
+module.exports = Doctor;

@@ -1,9 +1,9 @@
-import { Router } from "express";
-import {
+const { Router } = require("express");
+const {
   getDoctor,
   getDoctorbyId,
   postDoctor,
-} from "../controllers/doctors.js";
+} = require("../controllers/doctors.js");
 
 const doctorsRouter = Router();
 
@@ -13,4 +13,4 @@ doctorsRouter.get("/:id", getDoctorbyId);
 
 doctorsRouter.post("/", postDoctor);
 
-export default doctorsRouter;
+module.exports = doctorsRouter;
