@@ -22,8 +22,7 @@ app.use(bodyParser.raw());
 app.use(bodyParser.json());
 
 const corsOptions = {
-  origin:
-    "https://kampus-merdeka-software-engineering.github.io/FE-Palembang-29/",
+  origin: "https://github.com/zakdii/belajar-express1-fe",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 200, // Beberapa browser memerlukan status 200
